@@ -15,20 +15,43 @@
         <h1 class="text-white text-3xl font-bold"> CSES UTFSM Leaderboard </h1>
     </div>
 
-    <div id="solved" class="flex w-screen">
-        <div class="m-auto">
-            <table class="table-fixed border-spacing-4">
-                <thead>
-                  <tr>
-                    <th class="text-white">Usuario</th>
-                    <th class="text-white">Cantidad</th>
-                  </tr>
-                </thead>
+    <div id="solved">
+        <div class="grid grid-cols-1 md:grid-cols-7 w-screen">
 
-                <tbody id="solved-insert">
-                </tbody>
-                
-              </table>
+          <!-- Scoreboard general -->
+          <div class="mx-5">
+            <table class="table-fixed border-spacing-4">
+              <thead>
+                <tr>
+                  <th class="text-white">Usuario</th>
+                  <th class="text-white">Cantidad</th>
+                </tr>
+              </thead>
+              <tbody id="solved-insert">
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mx-5 md:col-span-6">
+            <h1 class="text-xl text-white font-bold">Categorias disponibles:</h1>
+            
+            <select name="categorias" id="categorias-dropdown">
+              <option onclick="changeCategory(`introductory`)" value="introductory">Introductory Problems</option>
+              <option onclick="changeCategory(`sorting`)"value="sorting">Sorting and Searching</option>
+              <option onclick="changeCategory(`dynamic`)"value="dynamic">Dynamic Programming</option>
+              <option onclick="changeCategory(`graph`)"value="graph">Graph Algorithms</option>
+              <option onclick="changeCategory(`range`)"value="range">Range Queries</option>
+              <option onclick="changeCategory(`tree`)"value="tree">Tree Algorithms</option>
+              <option onclick="changeCategory(`mathematics`)"value="mathematics">Mathematics</option>
+              <option onclick="changeCategory(`string`)"value="string">String Algorithms</option>
+              <option onclick="changeCategory(`geometry`)"value="geometry">Geometry</option>
+              <option onclick="changeCategory(`advanced`)"value="advanced">Advanced Techniques</option>
+              <option onclick="changeCategory(`additional`)"value="additional">Additional Problems</option>
+            </select>
+
+            <div id="solvedcategory-insert" class="grid grid-cols-12"></div>
+          </div>
+
         </div>
     </div>
 
