@@ -1,4 +1,4 @@
-const IP = `http://localhost:5001`
+const IP = `http://bogodijkstra.xyz:5001`
 let all_user_data = []
 
 const id_list = [
