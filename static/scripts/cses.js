@@ -1,4 +1,3 @@
-const IP = `http://bogodijkstra.xyz:5001`
 let all_user_data = []
 
 const id_list = [
@@ -47,7 +46,7 @@ const barComponent = (username, total, percentage) => {
 }
 
 const getSolved = async (user_id) => {
-    const url = `${IP}/proxyapi/${user_id}`;
+    const url = `proxyapi/${user_id}`;
 
     // get html from user
     const response = await fetch(url);
@@ -128,7 +127,8 @@ const getCategorySolvedByUsername = (username, category) => {
                       .filter( problem => problem.solved_task);
 }
 
-const changeCategory = (option) => {
+const changeCategory = () => {
+    const option = document.getElementById("categorias-dropdown").selectedOptions[0].value; 
     document.getElementById("solvedcategory-insert").innerHTML = "";
     loadBarCategoryHTML(option);
 }
@@ -145,7 +145,6 @@ const loadBarCategoryHTML = (category) => {
     }
 }
 
-//console.log(all_user_data)
 Promise.all(
     id_list.map( async (user_id) => {
         const user_data = await getSolved(user_id);

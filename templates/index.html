@@ -35,18 +35,18 @@
           <div class="mx-5 md:col-span-6">
             <h1 class="text-xl text-white font-bold">Categorias disponibles:</h1>
             
-            <select name="categorias" id="categorias-dropdown">
-              <option onclick="changeCategory(`introductory`)" value="introductory">Introductory Problems</option>
-              <option onclick="changeCategory(`sorting`)"value="sorting">Sorting and Searching</option>
-              <option onclick="changeCategory(`dynamic`)"value="dynamic">Dynamic Programming</option>
-              <option onclick="changeCategory(`graph`)"value="graph">Graph Algorithms</option>
-              <option onclick="changeCategory(`range`)"value="range">Range Queries</option>
-              <option onclick="changeCategory(`tree`)"value="tree">Tree Algorithms</option>
-              <option onclick="changeCategory(`mathematics`)"value="mathematics">Mathematics</option>
-              <option onclick="changeCategory(`string`)"value="string">String Algorithms</option>
-              <option onclick="changeCategory(`geometry`)"value="geometry">Geometry</option>
-              <option onclick="changeCategory(`advanced`)"value="advanced">Advanced Techniques</option>
-              <option onclick="changeCategory(`additional`)"value="additional">Additional Problems</option>
+            <select name="categorias" onchange="changeCategory()" id="categorias-dropdown">
+              <option value="introductory">Introductory Problems</option>
+              <option value="sorting">Sorting and Searching</option>
+              <option value="dynamic">Dynamic Programming</option>
+              <option value="graph">Graph Algorithms</option>
+              <option value="range">Range Queries</option>
+              <option value="tree">Tree Algorithms</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="string">String Algorithms</option>
+              <option value="geometry">Geometry</option>
+              <option value="advanced">Advanced Techniques</option>
+              <option value="additional">Additional Problems</option>
             </select>
 
             <div id="solvedcategory-insert" class="grid grid-cols-12"></div>
