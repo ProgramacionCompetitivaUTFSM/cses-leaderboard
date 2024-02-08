@@ -16,6 +16,9 @@ cached_user_problem = {}
 last_cached = None
 delta_interval_recache = 60*5
 
+# Flask 
+app = Flask(__name__)
+
 # Scrap proxy
 def get_token(s,url):
     response = s.get(url)
@@ -33,16 +36,38 @@ def login(s,username,password):
     })
     return response.text
 
+def get_username(html):
+    h2 = html.find("h2")
+    return h2.contents[0][15:]
+
+def get_solved_count(html):
+    solved_count = html.find("div",class_="content").find("p")
+    return solved_count.contents[0][14:].split("/")[0]
+
+def get_problems(html):
+    problems = html.find_all("a",class_="task-score")
+    all_solved = []
+    for problem in problems:
+        all_solved.append({
+            "problem_name": problem["title"],
+            "solved_task": "full" in problem["class"]
+        })
+    return all_solved
+
 def scrapData(user_id):
     s = requests.Session()
     login(s, env_vars.get("USERNAME"), env_vars.get("PASSWORD"))
     response = s.get(f"https://cses.fi/problemset/user/{user_id}/")
-    cached_user_problem[user_id] = (datetime.now(), response.text)
-    
-# Flask 
-app = Flask(__name__)
 
-@app.route("/proxyapi/<user_id>")
+    html = BeautifulSoup(response.text,"html.parser")
+
+    cached_user_problem[user_id] = (datetime.now(), {
+        "username": get_username(html),
+        "all_solved": get_problems(html),
+        "solved_count": get_solved_count(html)
+    })
+
+@app.route("/user/<user_id>")
 def server(user_id):
     # Just scrap and return
     if user_id not in cached_user_problem:
