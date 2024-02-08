@@ -1,19 +1,10 @@
 let all_user_data = []
 
 const id_list = [
-    102879,
-    144352,
-    143392,
-    138829,
+    83810,
     138667,
-    144349,
-    143605,
-    145408,
-    144447,
-    144354,
-    144353,
     49521,
-    135064
+    157346
 ];
 
 
@@ -123,7 +114,7 @@ const getCategorySolvedByUsername = (username, category) => {
 
     const [starting_index, ending_index] = getRangeIndexByCategory(category);
 
-    return user_solved.slice(starting_index, ending_index)
+    return user_solved.slice(starting_index, ending_index+1)
                       .filter( problem => problem.solved_task);
 }
 
