@@ -37,34 +37,9 @@ const barComponent = (username, total, percentage) => {
 }
 
 const getSolved = async (user_id) => {
-    const url = `proxyapi/${user_id}`;
-
-    // get html from user
+    const url = `user/${user_id}`;
     const response = await fetch(url);
-    const plain_html = await response.text();
-
-    // parse it
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(plain_html, "text/html");
-
-    // scrapping
-    const all_solved_dom = doc.getElementsByClassName("task-score icon");
-    const username = doc.getElementsByClassName("content")[0].childNodes[2].textContent.trim().slice(15);
-    const solved_count = doc.getElementsByClassName("content")[0].childNodes[4].textContent.trim().slice(14).split("/")[0]
-    // return all exercises in order
-    let all_solved = [];
-    for (let exercise of all_solved_dom) {
-        all_solved.push({
-            problem_name: exercise.getAttribute("title"),
-            solved_task: exercise.classList.contains("full")
-        });
-    }
-
-    return {
-        username,
-        solved_count,
-        all_solved
-    };
+    return response.json();
 };
 
 const exercises_ranges = {
